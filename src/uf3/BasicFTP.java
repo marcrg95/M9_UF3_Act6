@@ -61,6 +61,10 @@ public class BasicFTP {
 			} else if (comanda.equals("put")) {
 				String fitxer = scan.next();
 				pujaFitxer(fitxer, ServerFTP, usuari, contrasenya);
+			}  else if (comanda.equals("rename")) {
+				String nom = scan.next();
+				String nom2 = scan.next();
+				renombraFitxer(nom, nom2);
 			}
 
 		} catch (IOException ioe) {
@@ -126,6 +130,18 @@ public class BasicFTP {
 			
 			ioe.printStackTrace();
 			
+		}
+	}
+	
+	public static void renombraFitxer(String nom, String nom2) {
+		try {
+			if (client.rename(nom, nom2)) {
+				System.out.println("Fitxer renombrat... ");
+			} else {
+				System.out.println("No s'ha pogut renombrar el fitxer... ");
+			}
+		} catch (IOException ioe) {
+			ioe.printStackTrace();
 		}
 	}
 
